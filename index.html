@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lap post</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #222;
+    }
+    body.on{
+      background: radial-gradient(#555, #111);
+    }
+    .bulb{
+      position: relative;
+      width: 80px;
+      height: 80px;
+      background: #444;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    body.on .bulb{
+      background: #fff;
+      box-shadow: 0 0 50px #fff,
+      0 0 100px #fff,
+      0 0 150px #fff,
+      0 0 200px #fff,
+      0 0 250px #fff,
+      0 0 300px #fff,
+      0 0 350px #fff,;
+    }
+    .bulb::before{
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 22.5px;
+      width: 35px;
+      height: 80px;
+      background: #444;
+      border-top: 30px solid #000;
+      border-radius: 10px;
+    }
+    body.on .bulb::before{
+      background: #fff;
+    }
+    body.on .bulb::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      background: #fff;
+      filter: blur(40px);
+    }
+    .bulb span:nth-child(1){
+      position: absolute;
+      display: block;
+      top: -16px;
+      left: -4px;
+      transform: rotate(342deg);
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      border-bottom-right-radius: 40px;
+      box-shadow: 20px 20px 0 10px #444;
+    }
+    .bulb span:nth-child(2){
+      position: absolute;
+      display: block;
+      top: -16px;
+      right: -4px;
+      transform: rotate(17deg);
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      border-bottom-left-radius: 40px;
+      box-shadow: -20px 20px 0 10px #444;
+    }
+    body.on .bulb span:nth-child(1){
+      box-shadow: 20px 20px 0 10px #fff;
+    }
+    body.on .bulb span:nth-child(2){
+      box-shadow: -20px 20px 0 10px #fff;
+    }
+    .wire{
+      position: absolute;
+      left: calc(50% - 2px);
+      bottom: 50%;
+      width: 4px;
+      height: 60vh;
+      background: #000;
+      z-index: 1;
+    }
+    .switch{
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      bottom: 50px;
+      right: 50px;
+      background: linear-gradient(#eee, #ccc, #eee);
+      border: 3px solid #000;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .switch .btn{
+      position: relative;
+      width: 25px;
+      height: 40px;
+      background: linear-gradient(#777, #fff, #777);
+      border-radius: 6px;
+      border: 2px solid #000;
+      cursor: pointer;
+    }
+    .switch .btn::before{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 85%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(#fff, #fff);
+      border-radius: 4px;
+    }
+    .on .switch .btn::before {
+      top: 15%;
+    }
+
+    .pc{
+      position: relative;
+      width: 80px;
+      height: 80px;
+      bottom: 50px;
+      right: -50px;
+    }
+    .pc img{
+      height: 400px;
+      filter: brightness(1%)
+    }
+    body.on .pc img{
+      filter: brightness(50%);
+    }
+    .warpper{
+      display: inline-flex;
+      position: absolute;
+      bottom: 100px;
+      left: 50px;
+    }
+    .warpper .static-tex{
+      color: #fff;
+      font-size: 60px;
+      font-weight: 400;
+    }
+    .warpper .daynamic-tex{
+      margin-left: 15px;
+      line-height: 90px;
+      height: 90px;
+      overflow: hidden;   
+     }
+    
+    .daynamic-tex li{
+      color: #FC6D6D;
+      list-style: none;
+      font-size: 60px;
+      font-weight: 500;
+      position: relative;
+      top: 0;
+      animation: solid 6s steps(4) infinite;
+      transition: 0.5s;
+    }
+    @keyframes solid{
+      100%{
+        top: -360px;
+      }
+    }
+    .daynamic-tex li span{
+      position: relative;
+    }
+    .daynamic-tex li span::after{
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #222;
+      padding: 10px;
+      border-left: 2px solid #FC6D6D;
+      animation: type 1.5s steps(10) infinite;
+      transition: 0.5s;
+    }
+    body.on .daynamic-tex li span::after{
+      background: transparent;
+    }
+    @keyframes type{
+      100%{
+        left: 100%;
+        margin: 0 -35px 0 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+    
+    <div class="light">
+      <div class="warpper">
+        <div class="static-tex">I'm a</div>
+        <ul class="daynamic-tex">
+          <li><span>programmer</span></li>
+          <li><span>web-developer</span></li>
+          <li><span>with Django </span></li>
+          <li><span>and React</span></li>
+        </ul>
+      </div>
+      <div class="pc">
+        <img src="./img/krishnando-removebg-preview.png" alt="">
+      </div>
+      <div class="wire"></div>
+      <div class="bulb">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="switch">
+        <div class="btn"></div>
+      </div>
+    </div>
+  
+  <script>
+    let btn= document.querySelector('.btn');
+    let body = document.querySelector('body');
+    btn.onclick = function(){
+      body.classList.toggle('on')
+    }
+  </script>
+</body>
+</html>
